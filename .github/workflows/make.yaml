@@ -1,0 +1,24 @@
+name: C++ Tests
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Check out code
+      uses: actions/checkout@v2
+
+    - name: Set up C++
+      uses: actions/setup-cpp@v2
+      with:
+        compiler: 'gcc' # or 'clang', depending on your preference
+
+    - name: Build and run tests
+      run: |
+        mkdir build
+        cd build
+        cmake ..
+        make
+        ctest
